@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.18.2'
+
+      - name: Install dependencies
+        run: |
+          go version
+          go get -u golang.org/x/lint/golint
+
+      - name: Run build
+        run: go build .
+
+      - name: Run vet & lint
+        run: |
+          go vet .
+          golint .
+
+      - name: Run testing
+        run: cd test && go test -v
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to Docker registry
+        uses: docker/build-push-action@v1
+        with:
+          repository: knutfr/starter
