@@ -9,7 +9,7 @@ import (
 func Logger() iris.Handler {
 	return func(ctx iris.Context) {
 		t := time.Now()
-		ctx.Values().Set("begin", t)
+		ctx.Values().Set("begin", t.Format(time.UnixDate))
 		// Set a shared variable between handlers
 		ctx.Values().Set("framework", "iris")
 
@@ -21,7 +21,7 @@ func Logger() iris.Handler {
 
 		// access the status we are sending
 		status := ctx.GetStatusCode()
-		log.Printf("status code: %d, execution time: %s", status, latency)
+		log.Debugf("status code: %d \texecution time: %s \t route: %s", status, latency, ctx.Request().URL)
 
 	}
 }
