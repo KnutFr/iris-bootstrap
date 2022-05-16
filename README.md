@@ -1,7 +1,7 @@
 # Bootstrap Iris
 ## Overview
-[![Go Report Card](https://goreportcard.com/badge/github.com/KnutFr/wotracker-backend?style=flat-square)](https://goreportcard.com/report/github.com/KnutFr/wotracker-backend)
-[![Release](https://img.shields.io/github/release/golang-standards/project-layout.svg?style=flat-square)](https://github.com/golang-standards/project-layout/releases/latest)
+[![Go Report Card](https://goreportcard.com/badge/github.com/KnutFr/iris-bootstrap?style=flat-square)](https://goreportcard.com/report/github.com/KnutFr/iris-bootstrap)
+
 
 
 ## Folder Structure
